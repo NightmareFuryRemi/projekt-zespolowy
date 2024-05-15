@@ -1,10 +1,8 @@
-import React from 'react';
+import React from "react";
+import { TaskData } from "../types";
 
 interface TaskProps {
-  taskData: {
-    taskName: string;
-    taskDescription: string;
-  };
+  taskData: TaskData;
 }
 
 const Task: React.FC<TaskProps> = ({ taskData }) => {
@@ -14,6 +12,6 @@ const Task: React.FC<TaskProps> = ({ taskData }) => {
       <p>Description: {taskData.taskDescription}</p>
     </div>
   );
-}
+};
 
 export default Task;

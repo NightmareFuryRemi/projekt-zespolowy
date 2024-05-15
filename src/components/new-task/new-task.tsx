@@ -1,40 +1,72 @@
 import React, { useState } from "react";
-import Task from "../task/task";
+import { TaskData } from "../types";
+import { Link, useNavigate } from "react-router-dom";
 
+import "./new-task.scss";
 
-const NewTask = () => {
-  const [taskData, setTaskData] = useState({
+interface NewTaskProps {
+  addTask: (taskData: TaskData) => void;
+}
+
+const NewTask: React.FC<NewTaskProps> = ({ addTask }) => {
+  const [taskData, setTaskData] = useState<TaskData>({
     taskName: "",
     taskDescription: "",
   });
 
-  const handleTaskDataChange = (name: string, value: string) => {
+  const navigate = useNavigate();
+
+  const handleCancel = () => {
+    navigate("/");
+  };
+
+  const handleTaskDataChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    key: keyof TaskData
+  ) => {
+    const { value } = e.target;
     setTaskData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [key]: value,
     }));
+  };
+
+  const handleAddTask = () => {
+    if (!taskData.taskName || !taskData.taskDescription) {
+      alert("Please fill out both fields.");
+      return;
+    }
+    addTask(taskData);
+    setTaskData({ taskName: "", taskDescription: "" });
+    navigate("/");
   };
 
   return (
     <div className="new-task">
-      <h2>Create New Task</h2>
       <input
         type="text"
+        className="new-task__title"
         name="taskName"
         placeholder="Task Name"
         value={taskData.taskName}
-        onChange={(e) => handleTaskDataChange("taskName", e.target.value)}
+        onChange={(e) => handleTaskDataChange(e, "taskName")}
       />
       <input
         type="text"
+        className="new-task__desc"
         name="taskDescription"
         placeholder="Task Description"
         value={taskData.taskDescription}
-        onChange={(e) =>
-          handleTaskDataChange("taskDescription", e.target.value)
-        }
+        onChange={(e) => handleTaskDataChange(e, "taskDescription")}
       />
-      <Task taskData={taskData} />
+      <div className="new-task__button-container">
+        <button className="new-task__add" onClick={handleAddTask}>
+          Add
+        </button>
+        <button className="new-task__cancel" onClick={handleCancel}>
+          Cancel
+        </button>
+      </div>
     </div>
   );
 };
