@@ -10,7 +10,7 @@ interface MainPageProps {
 const MainPage: React.FC<MainPageProps> = ({ tasks }) =>  {
   return (
     <div className="main-page">
-      <h1>Lista zadań</h1>
+       <h1>Zadania</h1>
       <div className="task-list">
         {tasks.map((task, index) => (
           <Task key={index} taskData={task} />
