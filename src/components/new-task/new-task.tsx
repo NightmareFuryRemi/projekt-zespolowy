@@ -1,25 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
+import Task from "../task/task";
 
-import "./new-task.scss";
 
-const NewTask: React.FC = () => {
+const NewTask = () => {
+  const [taskData, setTaskData] = useState({
+    taskName: "",
+    taskDescription: "",
+  });
+
+  const handleTaskDataChange = (name: string, value: string) => {
+    setTaskData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className="new-task">
+      <h2>Create New Task</h2>
       <input
         type="text"
-        className="new-task__title"
-        placeholder="Name a task"
-      ></input>
-
-      <input
-        type="text"
-        className="new-task__desc"
-        placeholder="Describe a task"
+        name="taskName"
+        placeholder="Task Name"
+        value={taskData.taskName}
+        onChange={(e) => handleTaskDataChange("taskName", e.target.value)}
       />
-      <div className="new-task__button-container">
-        <button className="new-task__add">Add task</button>
-        <button className="new-task__cancel">Cancel task</button>
-      </div>
+      <input
+        type="text"
+        name="taskDescription"
+        placeholder="Task Description"
+        value={taskData.taskDescription}
+        onChange={(e) =>
+          handleTaskDataChange("taskDescription", e.target.value)
+        }
+      />
+      <Task taskData={taskData} />
     </div>
   );
 };
