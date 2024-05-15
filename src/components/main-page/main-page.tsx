@@ -1,15 +1,25 @@
 import React from "react";
+import { TaskData } from "../types";
 import { Link } from "react-router-dom";
-import './main-page.scss';
+import Task from "../task/task";
 
-const MainPage: React.FC<{}> = () => {
+interface MainPageProps {
+  tasks: TaskData[];
+}
+
+const MainPage: React.FC<MainPageProps> = ({ tasks }) =>  {
   return (
     <div className="main-page">
-      <h1>Zadania</h1>
+       <h1>Zadania</h1>
+      <div className="task-list">
+        {tasks.map((task, index) => (
+          <Task key={index} taskData={task} />
+        ))}
+      </div>
       <div className="bottom-Page">
-       <Link to="/new-task">
-        <button>New-task</button>
-       </Link>
+        <Link to="/new-task">
+          <button>New-task</button>
+        </Link>
       </div>
     </div>
   );

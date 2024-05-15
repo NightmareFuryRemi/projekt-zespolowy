@@ -55,6 +55,7 @@
   cursor: pointer;
   transition: background-color 0.3s;
   color: white;
+  text-align: center;
 }
 
 .new-task__cancel:hover {
