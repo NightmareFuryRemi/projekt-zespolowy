@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import './main-page.scss';
 
 const MainPage: React.FC<{}> = () => {
@@ -7,7 +7,9 @@ const MainPage: React.FC<{}> = () => {
     <div className="main-page">
       <h1>Witaj na stronie głównej!</h1>
       <div className="bottom-Page">
-        <button>Button_1</button>
+       <Link to="/new-task">
+        <button>New-task</button>
+       </Link>
       </div>
     </div>
   );
