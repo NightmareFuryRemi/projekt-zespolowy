@@ -3,6 +3,7 @@ import { TaskData } from "../types";
 import { Link } from "react-router-dom";
 import Task from "../task/task";
 
+import "./main-page.scss"
 interface MainPageProps {
   tasks: TaskData[];
 }
