@@ -10,12 +10,6 @@ const MainPage: React.FC<{}> = () => {
        <Link to="/new-task">
         <button>New-task</button>
        </Link>
-       <Link to="/new-task">
-        <button>remove-tasks</button>
-       </Link>
-       <Link to="/new-task">
-        <button>New-task</button>
-       </Link>
       </div>
     </div>
   );
