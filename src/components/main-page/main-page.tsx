@@ -8,22 +8,26 @@ import "./main-page.scss";
 interface MainPageProps {
   tasks: TaskData[];
   onDeleteTask: (taskId: string) => void;
+  onUpdateTaskStatus: (taskId: string, status: string) => void;
 }
 
-const MainPage: React.FC<MainPageProps> = ({ tasks, onDeleteTask }) => {
+const MainPage: React.FC<MainPageProps> = ({ tasks, onDeleteTask, onUpdateTaskStatus  }) => {
   const navigate = useNavigate();
 
   const handleDeleteTask = (taskId: string) => {
-    console.log("Deleting task with ID:", taskId);
     onDeleteTask(taskId);
+  };
+
+  const handleUpdateTaskStatus = (taskId: string, status: string) => {
+    onUpdateTaskStatus(taskId, status);
   };
 
   return (
     <div className="main-page">
-      <h1>Zadania</h1>
+      <h1>Tasks</h1>
       <div className="main-page__task-list">
-        {tasks.map((task, index) => (
-          <Task key={index} taskData={task} onDeleteTask={handleDeleteTask}/>
+        {tasks.map((task) => (
+          <Task key={task.id} taskData={task} onDeleteTask={handleDeleteTask} onUpdateTaskStatus={handleUpdateTaskStatus}/>
         ))}
       </div>
       <div className="main-page__bottom-Page">
