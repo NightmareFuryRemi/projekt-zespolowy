@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Clone this repository using ### 'git clone'
+Get into folder ### 'cd projekt-zespolowy'
+Run ### 'npm install' to install necessary modules
+Run ### 'npm start'
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Available Scripts
 
