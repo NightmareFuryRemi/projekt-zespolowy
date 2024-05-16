@@ -12,12 +12,12 @@ const MainPage: React.FC<MainPageProps> = ({ tasks }) =>  {
   return (
     <div className="main-page">
        <h1>Zadania</h1>
-      <div className="task-list">
+      <div className="main-page__task-list">
         {tasks.map((task, index) => (
           <Task key={index} taskData={task} />
         ))}
       </div>
-      <div className="bottom-Page">
+      <div className="main-page__bottom-Page">
         <Link to="/new-task">
           <button>New-task</button>
         </Link>
