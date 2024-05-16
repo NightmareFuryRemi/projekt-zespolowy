@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TaskData } from "../types";
+import "./task.scss"
 
 interface TaskProps {
   taskData: TaskData;
