@@ -1,9 +1,9 @@
 # Getting Started
 
-Clone this repository using ### 'git clone'
-Get into folder ### 'cd projekt-zespolowy'
-Run ### 'npm install' to install necessary modules
-Run ### 'npm start'
+Clone this repository using 'git clone'
+Get into folder 'cd projekt-zespolowy'
+Run 'npm install' to install necessary modules
+Run 'npm start'
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Available Scripts
