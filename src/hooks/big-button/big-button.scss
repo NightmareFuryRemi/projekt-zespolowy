@@ -1,0 +1,30 @@
+.big-button{
+    width: 8rem;
+    height: 3rem;
+    border-radius: 1rem;
+    border-width: 0.2rem;
+    background-color: transparent;
+    font-weight: 600;
+    transition: 500ms;
+    color: white;
+
+    &--primary{
+        border-color: green;
+    }
+
+    &--primary:hover{
+        background-color: green;
+        border-width: 0;
+        font-size: large;
+    }
+
+    &--secondary{
+        border-color: rgb(148, 74, 74);
+    }
+
+    &--secondary:hover{
+        background-color: rgb(148, 74, 74);
+        border-width: 0;
+        font-size: large;
+    }
+}

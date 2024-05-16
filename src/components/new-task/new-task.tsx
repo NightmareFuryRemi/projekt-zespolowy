@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { TaskData } from "../types";
-import { Link, useNavigate } from "react-router-dom";
+import { TaskData } from "../../hooks/types";
+import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid"; // Importuj funkcję v4 z uuid
 
 import "./new-task.scss";
 
@@ -10,6 +11,7 @@ interface NewTaskProps {
 
 const NewTask: React.FC<NewTaskProps> = ({ addTask }) => {
   const [taskData, setTaskData] = useState<TaskData>({
+    id:"",
     taskName: "",
     taskDescription: "",
     status: "pending",
@@ -18,6 +20,12 @@ const NewTask: React.FC<NewTaskProps> = ({ addTask }) => {
   const navigate = useNavigate();
 
   const handleCancel = () => {
+    setTaskData({
+      id: "",
+      taskName: "",
+      taskDescription: "",
+      status: "pending",
+    });
     navigate("/");
   };
 
@@ -37,8 +45,14 @@ const NewTask: React.FC<NewTaskProps> = ({ addTask }) => {
       alert("Please fill out both fields.");
       return;
     }
-    addTask(taskData);
-    setTaskData({ taskName: "", taskDescription: "", status: "pending" });
+    const newTaskData = { ...taskData, id: uuidv4() }; 
+    addTask(newTaskData);
+    setTaskData({
+      id: "",
+      taskName: "",
+      taskDescription: "",
+      status: "pending",
+    });
     navigate("/");
   };
 

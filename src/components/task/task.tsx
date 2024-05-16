@@ -1,33 +1,48 @@
 import React, { useState } from "react";
-import { TaskData } from "../types";
-import "./task.scss"
+import { TaskData } from "../../hooks/types";
+import { BigButton } from "../../hooks/big-button/big-button";
+
+import "./task.scss";
 
 interface TaskProps {
   taskData: TaskData;
+  onDeleteTask:(taskId: string) => void;
+  onUpdateTaskStatus: (taskId: string, status: string) => void;
 }
 
-const Task: React.FC<TaskProps> = ({ taskData }) => {
+const Task: React.FC<TaskProps> = ({ taskData, onDeleteTask, onUpdateTaskStatus }) => {
   const [status, setStatus] = useState(taskData.status);
-  const [showButton, setShowButton] = useState(true);
 
   const handleStatusChange = () => {
-    if (status !== "done") {
-      const newStatus = status === "pending" ? "done" : "pending";
-      setStatus(newStatus);
-      setShowButton(false);
-    }
+    const newStatus = status === "pending" ? "done" : "pending";
+    setStatus(newStatus);
+    onUpdateTaskStatus(taskData.id, newStatus);
   };
+
+  const handleDeleteTask = () =>{
+    onDeleteTask(taskData.id);
+  }
 
   return (
     <div className="task">
       <h3>Task Name: {taskData.taskName}</h3>
       <p>Description: {taskData.taskDescription}</p>
       <p>Status: {status}</p>
-      {showButton && (
-        <button className="task__button" onClick={handleStatusChange}>
-          Change Status
-        </button>
+      <div className="task__button">
+      {status === "pending" ? (
+        <BigButton
+          color="primary"
+          text="Mark as Done"
+          onClick={handleStatusChange}
+        />
+      ) : (
+        <BigButton
+          color="secondary"
+          text="Delete Task"
+          onClick={handleDeleteTask}
+        />
       )}
+      </div>
     </div>
   );
 };
