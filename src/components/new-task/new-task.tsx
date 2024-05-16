@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { TaskData } from "../types";
-import { Link, useNavigate } from "react-router-dom";
+import { TaskData } from "../../hooks/types";
+import { useNavigate } from "react-router-dom";
 
 import "./new-task.scss";
 

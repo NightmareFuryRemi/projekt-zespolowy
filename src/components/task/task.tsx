@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { TaskData } from "../types";
-import "./task.scss"
+import { TaskData } from "../../hooks/types";
+import { BigButton } from "../../hooks/big-button/big-button";
+
+import "./task.scss";
 
 interface TaskProps {
   taskData: TaskData;
@@ -8,14 +10,10 @@ interface TaskProps {
 
 const Task: React.FC<TaskProps> = ({ taskData }) => {
   const [status, setStatus] = useState(taskData.status);
-  const [showButton, setShowButton] = useState(true);
 
   const handleStatusChange = () => {
-    if (status !== "done") {
-      const newStatus = status === "pending" ? "done" : "pending";
-      setStatus(newStatus);
-      setShowButton(false);
-    }
+    const newStatus = status === "pending" ? "done" : "pending";
+    setStatus(newStatus);
   };
 
   return (
@@ -23,10 +21,18 @@ const Task: React.FC<TaskProps> = ({ taskData }) => {
       <h3>Task Name: {taskData.taskName}</h3>
       <p>Description: {taskData.taskDescription}</p>
       <p>Status: {status}</p>
-      {showButton && (
-        <button className="task__button" onClick={handleStatusChange}>
-          Change Status
-        </button>
+      {status === "pending" ? (
+        <BigButton
+          color="primary"
+          text="Mark as Done"
+          onClick={handleStatusChange}
+        />
+      ) : (
+        <BigButton
+          color="secondary"
+          text="Delete Task"
+          onClick={handleStatusChange}
+        />
       )}
     </div>
   );
