@@ -12,6 +12,7 @@ const NewTask: React.FC<NewTaskProps> = ({ addTask }) => {
   const [taskData, setTaskData] = useState<TaskData>({
     taskName: "",
     taskDescription: "",
+    status: "pending",
   });
 
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const NewTask: React.FC<NewTaskProps> = ({ addTask }) => {
       return;
     }
     addTask(taskData);
-    setTaskData({ taskName: "", taskDescription: "" });
+    setTaskData({ taskName: "", taskDescription: "", status: "pending" });
     navigate("/");
   };
 
