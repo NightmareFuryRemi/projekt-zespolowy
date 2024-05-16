@@ -12,13 +12,17 @@ const App = () => {
     setTasks([...tasks, taskData]);
   };
 
+  const deleteTask = (taskId) => {
+    setTasks(tasks.filter(task => task.id !== taskId));
+  };
+
   return (
     <Router>
       <div className="app">
         <Routes>
           <Route
             path="/"
-            element={<MainPage tasks={tasks} addTask={addTask} />}
+            element={<MainPage tasks={tasks} addTask={addTask} onDeleteTask={deleteTask}/>}
           />
           <Route
             path="/new-task"

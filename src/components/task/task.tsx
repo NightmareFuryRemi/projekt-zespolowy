@@ -6,15 +6,21 @@ import "./task.scss";
 
 interface TaskProps {
   taskData: TaskData;
+  onDeleteTask:(taskId: string) => void;
 }
 
-const Task: React.FC<TaskProps> = ({ taskData }) => {
+const Task: React.FC<TaskProps> = ({ taskData, onDeleteTask }) => {
   const [status, setStatus] = useState(taskData.status);
 
   const handleStatusChange = () => {
     const newStatus = status === "pending" ? "done" : "pending";
     setStatus(newStatus);
   };
+
+  const handleDeleteTask = () =>{
+    console.log("Deleting task with ID:", taskData.id);
+    onDeleteTask(taskData.id);
+  }
 
   return (
     <div className="task">
@@ -31,7 +37,7 @@ const Task: React.FC<TaskProps> = ({ taskData }) => {
         <BigButton
           color="secondary"
           text="Delete Task"
-          onClick={handleStatusChange}
+          onClick={handleDeleteTask}
         />
       )}
     </div>
